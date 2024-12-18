@@ -175,9 +175,14 @@ function removeFirstOccurrences(str, value) {
  *   removeLastOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
 function removeLastOccurrences(str, value) {
-  const index = str.lastIndexOf(value);
-  if (index === -1) return str;
-  return str.slice(0, index) + str.slice(index + value.length);
+  let lastIndexValue = str.lastIndexOf(value);
+  if (lastIndexValue !== -1) {
+      let before = str.slice(0, lastIndexValue);
+      let after = str.slice(lastIndexValue + value.length);
+      return before + after;
+   } else {
+      return str;
+   };
 }
 
 /**
@@ -193,8 +198,17 @@ function removeLastOccurrences(str, value) {
  *   sumOfCodes() => 0
  */
 function sumOfCodes(str) {
-  if (typeof str !== 'string') return 0;
-   return Array.from(str).reduce((sum, char) => sum + char.charCodeAt(0), 0);
+  let pos;
+  let outputSumCode = 0;
+  if (str !== '') {
+      for (let i = 0; i < str.length; i++) {
+          pos = str.codePointAt(i);
+          outputSumCode += pos;
+      }
+      return outputSumCode;
+    } else {
+      return 0;
+    }
 }
 
 /**
@@ -209,7 +223,11 @@ function sumOfCodes(str) {
  *   startsWith('Hello World', 'Hello') => true
  */
 function startsWith(str, substr) {
-  return str.indexOf(substr) === 0;
+    if (str.startsWith(substr)) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 /**
@@ -224,7 +242,7 @@ function startsWith(str, substr) {
  *   endsWith('Hello World', 'Hello') => false
  */
 function endsWith(str, substr) {
-  return str.slice(-substr.length) === substr;
+    return str.endsWith(substr) ? true : false;
 }
 
 /**
@@ -241,9 +259,9 @@ function endsWith(str, substr) {
  *   formatTime(0, 0) => "00:00"
  */
 function formatTime(minutes, seconds) {
-  const formattedMinutes = String(minutes).padStart(2, '0');
-  const formattedSeconds = String(seconds).padStart(2, '0');
-  return `${formattedMinutes}:${formattedSeconds}`;
+    let min = () => minutes < 10 ? '0' + minutes : minutes.toString();
+    let sec = () => seconds < 10 ? '0' + seconds : seconds.toString();
+    return `${min()}:${sec()}`;
 }
 
 /**
@@ -257,7 +275,7 @@ function formatTime(minutes, seconds) {
  *   reverseString('12345') => '54321'
  */
 function reverseString(str) {
-  return str.split('').reverse().join('');
+    return str.split('').reverse().join('');
 }
 
 /**
@@ -272,7 +290,7 @@ function reverseString(str) {
  *   orderAlphabetically('abc123xyz') => '123abcxyz'
  */
 function orderAlphabetically(str) {
-  return str.split('').sort().join('');
+    return str.split('').sort().join('');
 }
 
 /**
@@ -288,7 +306,7 @@ function orderAlphabetically(str) {
  *   containsSubstring('12345', '34') => true
  */
 function containsSubstring(str, substring) {
-  return str.includes(substring);
+    return str.includes(substring) ? true : false;
 }
 
 /**
@@ -306,14 +324,8 @@ function containsSubstring(str, substring) {
  *   countVowels('XYZ') => 1
  */
 function countVowels(str) {
-  const vowels = 'aeiouyAEIOUY';
-  let count = 0;
-  for (let i = 0; i < str.length; i++) {
-    if (vowels.includes(str[i])) {
-      count++;
-    }
-  }
-  return count;
+    let arr = str.match(/[aeiouy]/gi);
+    return arr.length;
 }
 
 /**
@@ -330,8 +342,7 @@ function countVowels(str) {
  *   isPalindrome('No lemon, no melon') => true
  */
 function isPalindrome(str) {
-  const cleanedStr = str.toLowerCase().replace(/[^a-z0-9]/g, '');
-  return cleanedStr === cleanedStr.split('').reverse().join('');
+ 
 }
 
 /**
@@ -347,14 +358,7 @@ function isPalindrome(str) {
  *   findLongestWord('No words here') => 'words'
  */
 function findLongestWord(sentence) {
-  const words = sentence.split(' ');
-  let longestWord = '';
-  for (let word of words) {
-    if (word.length > longestWord.length) {
-      longestWord = word;
-    }
-  }
-  return longestWord;
+  
 }
 
 /**
@@ -368,9 +372,7 @@ function findLongestWord(sentence) {
  *   reverseWords('The Quick Brown Fox') => 'ehT kciuQ nworB xoF'
  */
 function reverseWords(str) {
-  const words = str.split(' ');
-  const reversedWords = words.map(word => word.split('').reverse().join(''));
-  return reversedWords.join(' ');
+  
 }
 
 /**
@@ -385,9 +387,7 @@ function reverseWords(str) {
  *   invertCase('12345') => '12345'
  */
 function invertCase(str) {
-  return str.split('')
-            .map(char => char === char.toUpperCase() ? char.toLowerCase() : char.toUpperCase())
-            .join('');
+ 
 }
 
 /**
@@ -404,7 +404,7 @@ function invertCase(str) {
  *   getStringFromTemplate('Chuck','Norris') => 'Hello, Chuck Norris!'
  */
 function getStringFromTemplate(firstName, lastName) {
-  return `Hello, ${firstName} ${lastName}!`;
+  
 }
 
 /**
@@ -418,7 +418,7 @@ function getStringFromTemplate(firstName, lastName) {
  *   extractNameFromTemplate('Hello, Chuck Norris!') => 'Chuck Norris'
  */
 function extractNameFromTemplate(value) {
-  return value.slice(7, -1);
+  
 }
 
 /**
@@ -433,7 +433,7 @@ function extractNameFromTemplate(value) {
  *   unbracketTag('<a>') => 'a'
  */
 function unbracketTag(str) {
-  return str.slice(1, -1);
+  
 }
 
 /**
@@ -452,7 +452,7 @@ function unbracketTag(str) {
  *   'info@gmail.com' => ['info@gmail.com']
  */
 function extractEmails(str) {
-  return str.split(';');
+  
 }
 
 /**
@@ -472,15 +472,7 @@ function extractEmails(str) {
  *
  */
 function encodeToRot13(str) {
-  return str.split('').map(char => {
-    if (char >= 'A' && char <= 'Z') {
-      return String.fromCharCode(((char.charCodeAt(0) - 65 + 13) % 26) + 65);
-    }
-    if (char >= 'a' && char <= 'z') {
-      return String.fromCharCode(((char.charCodeAt(0) - 97 + 13) % 26) + 97);
-    }
-    return char;
-  }).join('');
+  
 }
 
 /**
@@ -508,13 +500,7 @@ function encodeToRot13(str) {
  *   'K♠' => 51
  */
 function getCardId(value) {
-  const suits = ['♣', '♦', '♥', '♠'];
-  const suit = value.slice(-1);
-  const rank = value.slice(0, -1);
-  const ranks = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
-  const suitIndex = suits.indexOf(suit);
-  const rankIndex = ranks.indexOf(rank);
-  return suitIndex * 13 + rankIndex;
+  
 }
 
 module.exports = {
