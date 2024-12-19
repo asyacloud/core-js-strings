@@ -376,7 +376,7 @@ function findLongestWord(sentence) {
  *   reverseWords('The Quick Brown Fox') => 'ehT kciuQ nworB xoF'
  */
 function reverseWords(str) {
-  
+  return str.split(' ').reverse().join(' ').split('').reverse().join('');
 }
 
 /**
@@ -391,7 +391,15 @@ function reverseWords(str) {
  *   invertCase('12345') => '12345'
  */
 function invertCase(str) {
- 
+    let invertStr = '';
+    for (let i = 0; i < str.length; i++) {
+        if(str[i] < 'a') {
+          invertStr += str[i].toLowerCase();
+        } else if (str[i] > 'a') {
+          invertStr += str[i].toUpperCase();
+        }
+    }
+    return invertStr;
 }
 
 /**
@@ -408,7 +416,7 @@ function invertCase(str) {
  *   getStringFromTemplate('Chuck','Norris') => 'Hello, Chuck Norris!'
  */
 function getStringFromTemplate(firstName, lastName) {
-  
+  return `Hello, ${firstName} ${lastName}!`;
 }
 
 /**
@@ -422,7 +430,7 @@ function getStringFromTemplate(firstName, lastName) {
  *   extractNameFromTemplate('Hello, Chuck Norris!') => 'Chuck Norris'
  */
 function extractNameFromTemplate(value) {
-  
+    return value.substring(7).replaceAll(/!/g, '');
 }
 
 /**
@@ -437,7 +445,7 @@ function extractNameFromTemplate(value) {
  *   unbracketTag('<a>') => 'a'
  */
 function unbracketTag(str) {
-  
+  return str.replaceAll(/[<->]/g,'');
 }
 
 /**
@@ -456,7 +464,7 @@ function unbracketTag(str) {
  *   'info@gmail.com' => ['info@gmail.com']
  */
 function extractEmails(str) {
-  
+  return str.split(';');
 }
 
 /**
@@ -476,7 +484,17 @@ function extractEmails(str) {
  *
  */
 function encodeToRot13(str) {
-  
+  let arr = [];
+  let decodeStr = '';
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] >= 'a' && str[i] < 'n' || str[i] >= 'A' && str[i] < 'N') {
+       arr = str.charCodeAt(i) + 13;
+    } else if (str[i] <= 'm' && str[i] <= 'z' || str[i] <= 'M' && str[i] <= 'Z') {
+       arr = str.charCodeAt(i) - 13;
+    }
+    decodeStr += String.fromCodePoint(arr);
+  }
+  return decodeStr;
 }
 
 /**
