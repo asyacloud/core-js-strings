@@ -484,15 +484,24 @@ function extractEmails(str) {
  *
  */
 function encodeToRot13(str) {
-  let arr = [];
   let decodeStr = '';
-  for (let i = 0; i < str.length; i++) {
-    if (str[i] >= 'a' && str[i] < 'n' || str[i] >= 'A' && str[i] < 'N') {
-       arr = str.charCodeAt(i) + 13;
-    } else if (str[i] <= 'm' && str[i] <= 'z' || str[i] <= 'M' && str[i] <= 'Z') {
-       arr = str.charCodeAt(i) - 13;
+  for(let i = 0; i < str.length; i++) {
+    let encode = str.charCodeAt(i);
+    if (encode >= 97 && encode <= 122) {
+        if (encode < 110) {
+            decodeStr += String.fromCharCode(encode + 13);
+        } else {
+            decodeStr += String.fromCharCode(encode - 13);
+        }
+    } else if (encode >= 65 && encode <= 90) {
+        if (encode < 78) {
+            decodeStr += String.fromCharCode(encode + 13);
+        } else {
+            decodeStr += String.fromCharCode(encode - 13);
+        }
+    } else {
+      decodeStr += str[i];
     }
-    decodeStr += String.fromCodePoint(arr);
   }
   return decodeStr;
 }
@@ -522,7 +531,12 @@ function encodeToRot13(str) {
  *   'K♠' => 51
  */
 function getCardId(value) {
-  
+   /* const witchCard = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+   const witchSuits = ['♣', '♦', '♥', '♠'];
+   let indexCard = value.slice(0, -1);
+   let indexSuit = value.slice(-1);
+   return (witchCard.indexOf(indexCard) * 13) + witchSuits.indexOf(indexSuit);
+   */
 }
 
 module.exports = {
