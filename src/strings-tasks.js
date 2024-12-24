@@ -531,12 +531,164 @@ function encodeToRot13(str) {
  *   'K♠' => 51
  */
 function getCardId(value) {
-   /* const witchCard = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
-   const witchSuits = ['♣', '♦', '♥', '♠'];
-   let indexCard = value.slice(0, -1);
-   let indexSuit = value.slice(-1);
-   return (witchCard.indexOf(indexCard) * 13) + witchSuits.indexOf(indexSuit);
-   */
+  switch(value) {
+    case 'A♣':
+      return 1;
+      break;
+    case '2♣':
+      return 2;
+      break;
+    case '3♣':
+      return 3;
+      break;
+    case '4♣': 
+      return 4;
+      break;
+    case '5♣':
+      return 5;
+      break;
+    case '6♣':
+      return 6;
+      break;
+    case '7♣':
+      return 7;
+      break;
+    case '8♣':
+      return 8;
+      break;
+    case '9♣':
+      return 9;
+      break;
+    case '10♣':
+      return 10;
+      break;
+    case 'J♣':
+      return 11;
+      break;
+    case 'Q♣':
+      return 12;
+      break;
+    case 'K♣':
+      return 13;
+      break;
+    case 'A♦':
+      return 14;
+      break;
+    case '2♦':
+      return 15;
+      break;
+    case '3♦':
+      return 16;
+      break;
+    case '4♦':
+      return 17;
+      break;
+    case '5♦':
+      return 18;
+      break;
+    case '6♦':
+      return 19;
+      break;
+    case '7♦':
+      return 20;
+      break;
+    case '8♦':
+      return 21;
+      break;
+    case '9♦':
+      return 22;
+      break;
+    case '10♦':
+      return 23;
+      break;
+    case 'J♦':
+      return 24;
+      break;
+    case 'Q♦':
+      return 25;
+      break;
+    case 'K♦':
+      return 26;
+      break;
+    case 'A♥':
+      return 27;
+      break;
+    case '2♥':
+      return 28;
+      break;
+    case '3♥':
+      return 29;
+      break;
+    case '4♥':
+      return 30;
+      break;
+    case '5♥':
+      return 31;
+      break;
+    case '6♥':
+      return 32;
+      break;
+    case '7♥':
+      return 33;
+      break;
+    case '8♥':
+      return 34;
+      break;
+    case '9♥':
+      return 35;
+      break;
+    case '10♥':
+      return 36;
+      break;
+    case 'J♥':
+      return 37;
+      break;
+    case 'Q♥':
+      return 38;
+      break;
+    case 'K♥':
+      return 39;
+      break;
+    case 'A♠':
+      return 40;
+      break;
+    case '2♠':
+      return 41;
+      break;
+    case '3♠':
+      return 42;
+      break;
+    case '4♠':
+      return 43;
+      break;
+    case '5♠':
+      return 44;
+      break;
+    case '6♠':
+      return 45;
+      break;
+    case '7♠':
+      return 46;
+      break;
+    case '8♠':
+      return 47;
+      break;
+    case '9♠':
+      return 48;
+      break;
+    case '10♠':
+      return 49;
+      break;
+    case 'J♠':
+      return 50;
+      break;
+    case 'Q♠':
+      return 51;
+      break;
+    case 'K♠':
+      return 52;
+      break;
+  }
 }
 
 module.exports = {
